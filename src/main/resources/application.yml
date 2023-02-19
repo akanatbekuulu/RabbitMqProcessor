@@ -1,0 +1,28 @@
+server:
+  port: 8081
+
+spring:
+  profiles:
+    include: management
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:myDb}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASS:Qwe123#@!}
+
+
+  rabbitmq:
+    host: ${RABBIT_MQ_HOST:172.27.129.105}
+    port: ${RABBIT_MQ_PORT:5672}
+    username: ${RABBIT_MQ_USERNAME:admin}
+    password: ${RABBIT_MQ_PASSWORD:admin}
+
+rabbitmq-config:
+  host: ${RABBIT_MQ_HOST:localhost}
+  port: ${RABBIT_MQ_PORT:5672}
+  username: ${RABBIT_MQ_USERNAME:admin}
+  password: ${RABBIT_MQ_PASSWORD:admin123456}
+  consumer-send-queue-name: ${QUEUE_NAME:notifications}
+  notifications-exchange: ${EXCHANGE_NAME:notification-exchange}
+  routing-key: notifications-analytics
+  batch-size: 20
+  receive-timeout: 5000 # millis
